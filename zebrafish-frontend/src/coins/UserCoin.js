@@ -1,7 +1,7 @@
 import React from 'react'
 
 
-const UserCoin = () => (
+const UserCoin = (props) => (
     <table>
         <thead>
             <tr>
@@ -11,16 +11,25 @@ const UserCoin = () => (
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>Coin name</td>
-                <td>Price</td>
-                <td>
-                    <button className="button-edit">Edit Coin?</button>
-                    <button className="button-delete">Delete Coin?</button>
-                </td>
-            </tr>
+            {props.coins.length > 0 ? (
+                props.coins.map((coin)=> (
+                    <tr key={coin.id}>
+                        <td>{coin.name}</td>
+                        <td>{coin.price}</td>
+                        <td>
+                            <button className="button-edit">Edit</button>
+                            <button className="button-delete">Delete</button>
+                        </td>
+                    </tr> 
+                ))
+            ) : (
+                <tr>
+                    <td colSpan={3}>No Coins</td>
+                </tr>
+            )}
         </tbody>
-    </table>
+        </table>
 )
-
 export default UserCoin
+
+
